@@ -1,0 +1,166 @@
+/* Estilização do overlay do modal */
+.modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    width: 550px;
+    height: 420px;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-around;
+    background: rgb(236, 236, 236);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    /* position: relative; */
+}
+
+.modal-container input{
+    display: flex;
+}
+
+.head_modal{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+/* Botão fechar */
+.close-button {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    background-color: #b3b3b3;
+    color: #686868;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.close-button:hover {
+    color: rgb(0, 0, 0);
+}
+
+.ni_modal {
+    width: 100px;
+    padding: 5px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 10px;
+    border-color: #EEE;
+    
+}
+
+
+.desc_modal {
+    font-size: 14px;
+    width: 300px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 10px;
+    border-color: #EEE;
+}
+
+.loca_modal {
+    width: 70px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 10px;
+    border-color: #EEE;
+}
+
+.body_modal{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.caixa1{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa1 p{
+    display: flex;
+
+}
+
+.message {
+    margin-top: 0px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+/* Ocupação + Photo */
+.row1_modal{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.image1{
+    display: flex;
+    position: fixed;
+    background-color: #052bd3;
+}
+
+.image2{
+    display: flex;
+    position: fixed;
+    width: 180px;
+    height: 190px;
+    /* left: 575px; */
+    background-color: #e5e7e6;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.fileInput{
+    display: flex;
+    left: 57vw;
+    top: 30vw;
+    border: none;
+    position: fixed;
+    color: transparent;
+}
+
+.button_save{
+    width: 120px;
+    height: 40px;
+    background-color: #daddec;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    align-self: center; /* Centraliza o botão horizontalmente */
+    left: 45vw;
+    top: 30vw;
+    position: fixed;
+}
+
+.msg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
