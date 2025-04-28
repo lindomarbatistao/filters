@@ -12,44 +12,47 @@ export default function Patrimonios() {
     const { height, width } = useWindowSize()
     const [modalOpen, setModalOpen] = useState(false)
     const [dadosNi, setDadosNi] = useState([])
-    const [dadosDesc, setDadosDesc]=useState([])
+    const [dadosDesc, setDadosDesc] = useState([])
     const [ni, setNi] = useState('')
     const [patrimonio, setPatrimonio] = useState('')
     const [patrimonioSelecionado, setPatrimonioSelecionado] = useState([])
     const [dados, setDados] = useState([])
     const [page, setPage] = useState(0)
     const [quant, setQuant] = useState(0)
-    const [x, setX] = useState(0)
-    const [y, setY] = useState(18)
+
     useWindowSize()
 
-    useEffect(() => {
-        const capturar = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/patrimonios/')
-                setQuant(response.data.length)
-                setDados(response.data);
-            } catch (error) {
-                console.error("Erro ao capturar os dados:", error);
-            }
+    const capturar = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/patrimonios/')
+            setQuant(response.data.length)
+            setDados(response.data);
+        } catch (error) {
+            console.error("Erro ao capturar os dados:", error);
         }
+    }
 
-        capturar()
-    }, [])
+    useEffect(() => {
+        if (ni == '') {
+            capturar()
+        }
+        else {
+            setDados([])
+        }
+    }, [dadosNi])
 
     const buscarNiFront = () => {
         if (ni.trim() === '') {
             setDadosNi([]);
             return;
         }
-        const filtrados = dados.filter((item) =>
-            item.ni.toLowerCase() === ni.toLowerCase()
-        );
+
+        const filtrados = dados.filter((item) => item.ni === ni);
         setDadosNi(filtrados);
     };
 
-    const buscarNiBack = async() => {
-        buscarDescBack()
+
+    const buscarNiBack = async () => {
         if (ni.trim() === '') {
             setDadosNi([])
             return;
@@ -58,15 +61,15 @@ export default function Patrimonios() {
         setDadosNi(response.data)
     }
 
-    const buscarDescBack = async () => {
-        try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/search/?search=${patrimonio}`);
-            console.log("Dados: ", response.data);
-            setDadosDesc(response.data)
-        } catch (error) {
-            console.error('Erro ao buscar professor:', error);
-        }
-    };
+    // const buscarDescBack = async () => {
+    //     try {
+    //         const response = await axios.get(`http://127.0.0.1:8000/api/search/?search=${patrimonio}`);
+    //         console.log("DadosX: ", response.data);
+    //         setDadosDesc(response.data)
+    //     } catch (error) {
+    //         console.error('Erro ao buscar professor:', error);
+    //     }
+    // };
 
 
     return (
@@ -83,22 +86,26 @@ export default function Patrimonios() {
                     <p className="col4">Local</p>
                     <p className="col5">Opções</p>
                 </div>
-                {(dadosNi.length > 0 ? dadosNi : dados).slice(x + page, y + page).map((item, index) => (
-                    <div key={index} className="patrimonio-item">
-                        <p className="id">{item.id}</p>
-                        <p className="desc">{item.desc}</p>
-                        <p className="ni">{item.ni}</p>
-                        <p className="loca">{item.loca}</p>
-                    </div>
-                ))}
-                {(dadosDesc.length > 0 ? dadosDesc : dados).slice(x + page, y + page).map((item, index) => (
-                    <div key={index} className="patrimonio-item">
-                        <p className="id">{item.id}</p>
-                        <p className="desc">{item.desc}</p>
-                        <p className="ni">{item.ni}</p>
-                        <p className="loca">{item.loca}</p>
-                    </div>
-                ))}
+                {(dadosNi.length > 0 ? dadosNi : dados)
+                    .slice(0, 15)
+                    .map((item, index) => (
+                        <div key={index} className="patrimonio-item">
+                            <p className="id">{item.id}</p>
+                            <p className="desc">{item.desc}</p>
+                            <p className="ni">{item.ni}</p>
+                            <p className="loca">{item.loca}</p>
+                        </div>
+                    ))}
+                {(dadosDesc.length > 0 ? dadosDesc : dados)
+                    .slice(0, 15)
+                    .map((item, index) => (
+                        <div key={index} className="patrimonio-item">
+                            <p className="id">{item.id}</p>
+                            <p className="desc">{item.desc}</p>
+                            <p className="ni">{item.ni}</p>
+                            <p className="loca">{item.loca}</p>
+                        </div>
+                    ))}
             </div>
             <Footer />
 
